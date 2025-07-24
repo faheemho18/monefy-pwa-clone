@@ -10,6 +10,7 @@ interface TransactionModalProps {
   onClose: () => void
   onSubmit?: (transaction: TransactionFormData) => void
   initialType?: 'expense' | 'income'
+  initialData?: Partial<TransactionFormData>
 }
 
 export default function TransactionModal({
@@ -17,6 +18,7 @@ export default function TransactionModal({
   onClose,
   onSubmit,
   initialType = 'expense',
+  initialData,
 }: TransactionModalProps) {
   const [amount, setAmount] = useState('')
   const [type, setType] = useState<'expense' | 'income'>(initialType)
@@ -32,14 +34,31 @@ export default function TransactionModal({
 
   useEffect(() => {
     if (isOpen) {
-      // Reset form when modal opens
-      setAmount('')
-      setDisplayAmount('0')
-      setType(initialType)
-      setSelectedCategory(null)
-      setDescription('')
+      if (initialData) {
+        // Populate form with initial data for editing
+        const amountStr = initialData.amount?.toString() || ''
+        setAmount(amountStr)
+        setDisplayAmount(amountStr || '0')
+        setType(initialData.type || initialType)
+        setDescription(initialData.description || '')
+        
+        // Find and set the category
+        if (initialData.categoryId) {
+          const category = mockCategories.find(cat => cat.id === initialData.categoryId)
+          setSelectedCategory(category || null)
+        } else {
+          setSelectedCategory(null)
+        }
+      } else {
+        // Reset form when modal opens for new transaction
+        setAmount('')
+        setDisplayAmount('0')
+        setType(initialType)
+        setSelectedCategory(null)
+        setDescription('')
+      }
     }
-  }, [isOpen, initialType])
+  }, [isOpen, initialType, initialData])
 
   const handleNumberClick = (num: string) => {
     if (num === '.' && amount.includes('.')) return
@@ -81,7 +100,7 @@ export default function TransactionModal({
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-semibold text-gray-900">
-            Add {type === 'expense' ? 'Expense' : 'Income'}
+            {initialData ? 'Edit' : 'Add'} {type === 'expense' ? 'Expense' : 'Income'}
           </h2>
           <button
             onClick={onClose}
@@ -168,7 +187,7 @@ export default function TransactionModal({
               : 'bg-gray-300 text-gray-500 cursor-not-allowed'
           }`}
         >
-          Add {type === 'expense' ? 'Expense' : 'Income'}
+          {initialData ? 'Update' : 'Add'} {type === 'expense' ? 'Expense' : 'Income'}
         </button>
       </div>
     </div>

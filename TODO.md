@@ -30,19 +30,19 @@
 - [x] Add category management utilities and constants
 
 ### 4. Create Transaction List Component with Edit/Delete Functionality
-- [ ] Build TransactionList component with virtual scrolling for performance
-- [ ] Implement transaction cards with category icons and formatted amounts
-- [ ] Add swipe actions for edit/delete on mobile devices
-- [ ] Create edit transaction functionality with pre-filled modal
-- [ ] Create delete confirmation modal with undo option
-- [ ] Add transaction filtering by date range and category
+- [x] Build TransactionList component with virtual scrolling for performance
+- [x] Implement transaction cards with category icons and formatted amounts
+- [x] Add swipe actions for edit/delete on mobile devices
+- [x] Create edit transaction functionality with pre-filled modal
+- [x] Create delete confirmation modal with undo option
+- [x] Add transaction filtering by date range and category
 
 ### 5. Implement Balance Calculation and Display
 - [x] Create balance calculation utilities with income/expense totals
 - [x] Build BalanceDisplay component with animated counters
 - [x] Implement income vs expenses visualization with progress bars
-- [ ] Add period-based balance calculations (daily, weekly, monthly)
-- [ ] Create balance trend indicators (up/down arrows with percentages)
+- [x] Add period-based balance calculations (daily, weekly, monthly)
+- [x] Create balance trend indicators (up/down arrows with percentages)
 
 ---
 
