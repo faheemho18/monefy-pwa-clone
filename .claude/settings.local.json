@@ -55,7 +55,10 @@
       "Bash(git reset:*)",
       "Bash(git checkout:*)",
       "Bash(npm run lint)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(npm run test:*)",
+      "Bash(node:*)",
+      "Bash(npm test:*)"
     ],
     "deny": []
   }

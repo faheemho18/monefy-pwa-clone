@@ -4,6 +4,7 @@ import CategoryIcon from '@/components/Category/CategoryIcon'
 import EditIcon from '@/assets/icons/ui/edit.svg?react'
 import DeleteIcon from '@/assets/icons/ui/delete.svg?react'
 import { useState } from 'react'
+import { hapticFeedback } from '@/utils/haptics'
 
 interface TransactionCardProps {
   transaction: Transaction
@@ -26,6 +27,7 @@ export default function TransactionCard({
   const handleTouchStart = (e: React.TouchEvent) => {
     setStartX(e.touches[0].clientX)
     setIsDragging(true)
+    hapticFeedback.tap()
   }
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -41,8 +43,10 @@ export default function TransactionCard({
     // If swiped left more than 100px, show actions
     if (currentX < -100) {
       setIsSwipeOpen(true)
+      hapticFeedback.swipe()
     } else if (currentX > 50) {
       setIsSwipeOpen(false)
+      hapticFeedback.swipe()
     }
     
     setCurrentX(0)
@@ -50,12 +54,14 @@ export default function TransactionCard({
 
   const handleEditClick = (e: React.MouseEvent) => {
     e.stopPropagation()
+    hapticFeedback.editTransaction()
     onEdit(transaction)
     setIsSwipeOpen(false)
   }
 
   const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation()
+    hapticFeedback.deleteTransaction()
     onDelete(transaction)
     setIsSwipeOpen(false)
   }
@@ -72,26 +78,37 @@ export default function TransactionCard({
       <div className="absolute right-0 top-0 h-full flex">
         <button
           onClick={handleEditClick}
-          className="w-16 bg-blue-500 hover:bg-blue-600 flex items-center justify-center text-white transition-colors"
+          className="w-20 min-h-[60px] bg-blue-500 hover:bg-blue-600 active:bg-blue-700 flex items-center justify-center text-white transition-colors touch-manipulation focus:ring-2 focus:ring-blue-300 focus:ring-offset-2"
+          aria-label={`Edit transaction: ${transaction.description || category.name}`}
         >
-          <EditIcon className="w-5 h-5" />
+          <EditIcon className="w-6 h-6" />
         </button>
         <button
           onClick={handleDeleteClick}
-          className="w-16 bg-red-500 hover:bg-red-600 flex items-center justify-center text-white transition-colors"
+          className="w-20 min-h-[60px] bg-red-500 hover:bg-red-600 active:bg-red-700 flex items-center justify-center text-white transition-colors touch-manipulation focus:ring-2 focus:ring-red-300 focus:ring-offset-2"
+          aria-label={`Delete transaction: ${transaction.description || category.name}`}
         >
-          <DeleteIcon className="w-5 h-5" />
+          <DeleteIcon className="w-6 h-6" />
         </button>
       </div>
 
       {/* Main card content */}
       <div
-        className="bg-white p-4 flex items-center justify-between transition-transform duration-200 ease-out touch-pan-y"
+        className="bg-white p-4 flex items-center justify-between transition-transform duration-200 ease-out touch-pan-y min-h-[72px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
         style={{ transform: cardTransform }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
         onClick={() => setIsSwipeOpen(false)}
+        role="button"
+        tabIndex={0}
+        aria-label={`Transaction: ${transaction.description || category.name}, ${formatTransactionAmount(transaction.amount, transaction.type)}, ${formatRelativeDate(transaction.date)}. Swipe left for actions.`}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            setIsSwipeOpen(!isSwipeOpen)
+          }
+        }}
       >
         {/* Left side: Category icon and details */}
         <div className="flex items-center space-x-3 flex-1 min-w-0">
