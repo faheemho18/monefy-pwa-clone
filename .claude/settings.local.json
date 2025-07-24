@@ -45,7 +45,9 @@
       "Bash(gh api:*)",
       "Bash(gh repo view:*)",
       "Bash(npm create:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(npx tailwindcss init:*)",
+      "Bash(npm run dev:*)"
     ],
     "deny": []
   }
