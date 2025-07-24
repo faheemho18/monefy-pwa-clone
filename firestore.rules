@@ -1,0 +1,50 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users can only access their own user document
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Household access rules
+    match /households/{householdId} {
+      allow read, write: if request.auth != null && 
+        request.auth.uid in resource.data.members;
+      
+      // Allow creation if the user is the creator
+      allow create: if request.auth != null && 
+        request.auth.uid == resource.data.createdBy;
+    }
+    
+    // Categories can be read/written by household members
+    match /categories/{categoryId} {
+      allow read, write: if request.auth != null && 
+        exists(/databases/$(database)/documents/households/$(resource.data.householdId)) &&
+        request.auth.uid in get(/databases/$(database)/documents/households/$(resource.data.householdId)).data.members;
+    }
+    
+    // Transactions can be read/written by household members
+    match /transactions/{transactionId} {
+      allow read, write: if request.auth != null && 
+        exists(/databases/$(database)/documents/households/$(resource.data.householdId)) &&
+        request.auth.uid in get(/databases/$(database)/documents/households/$(resource.data.householdId)).data.members;
+        
+      // Additional validation for transaction data
+      allow create: if request.auth != null && 
+        exists(/databases/$(database)/documents/households/$(resource.data.householdId)) &&
+        request.auth.uid in get(/databases/$(database)/documents/households/$(resource.data.householdId)).data.members &&
+        resource.data.userId == request.auth.uid &&
+        resource.data.amount is number &&
+        resource.data.amount > 0 &&
+        resource.data.type in ['expense', 'income'] &&
+        resource.data.categoryId is string &&
+        resource.data.householdId is string;
+    }
+    
+    // Sync queue for offline support - users can only access their own queue items
+    match /sync_queue/{queueId} {
+      allow read, write: if request.auth != null && 
+        resource.data.userId == request.auth.uid;
+    }
+  }
+}

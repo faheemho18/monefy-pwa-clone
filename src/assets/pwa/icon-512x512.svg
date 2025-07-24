@@ -1,0 +1,30 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main background circle with gradient -->
+  <circle cx="256" cy="256" r="256" fill="url(#mainGradient)"/>
+  
+  <!-- Inner circle for contrast -->
+  <circle cx="256" cy="256" r="200" fill="#4CAF50"/>
+  
+  <!-- Dollar sign -->
+  <path d="M232 80V120H192V160H232V320H192V360H232V400H280V360H320V320H280V160H320V120H280V80H232ZM232 160V320H280V160H232Z" fill="white"/>
+  
+  <!-- Decorative accent elements -->
+  <circle cx="380" cy="132" r="20" fill="#FF9800" fill-opacity="0.8"/>
+  <circle cx="132" cy="380" r="16" fill="#FF9800" fill-opacity="0.6"/>
+  <circle cx="400" cy="400" r="12" fill="#FFFFFF" fill-opacity="0.3"/>
+  <circle cx="112" cy="112" r="12" fill="#FFFFFF" fill-opacity="0.3"/>
+  <circle cx="400" cy="112" r="8" fill="#FFFFFF" fill-opacity="0.2"/>
+  <circle cx="112" cy="400" r="8" fill="#FFFFFF" fill-opacity="0.2"/>
+  
+  <!-- Additional subtle design elements -->
+  <path d="M320 200C330.5 200 339 208.5 339 219C339 229.5 330.5 238 320 238C309.5 238 301 229.5 301 219C301 208.5 309.5 200 320 200Z" fill="#FFFFFF" fill-opacity="0.1"/>
+  <path d="M192 274C202.5 274 211 282.5 211 293C211 303.5 202.5 312 192 312C181.5 312 173 303.5 173 293C173 282.5 181.5 274 192 274Z" fill="#FFFFFF" fill-opacity="0.1"/>
+  
+  <defs>
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#45A049;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#388E3C;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
