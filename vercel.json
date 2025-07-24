@@ -1,5 +1,4 @@
 {
-  "name": "monefy-pwa-clone",
   "version": 2,
   "framework": "vite",
   "buildCommand": "npm run build",
@@ -16,11 +15,10 @@
       "VITE_APP_ENVIRONMENT": "production"
     }
   },
-  "functions": {},
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [
