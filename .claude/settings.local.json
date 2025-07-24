@@ -38,7 +38,14 @@
       "Bash(gh repo clone:*)",
       "Bash(git init:*)",
       "Bash(git remote add:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git config:*)",
+      "Bash(git push:*)",
+      "Bash(gh api:*)",
+      "Bash(gh repo view:*)",
+      "Bash(npm create:*)",
+      "Bash(npm install:*)"
     ],
     "deny": []
   }
