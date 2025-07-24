@@ -1,0 +1,289 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2025-01-24",
+    "description": "Comprehensive Visual Assets Library for Monefy PWA Clone",
+    "total_assets": 28,
+    "estimated_size": "180KB",
+    "optimized_size": "80KB"
+  },
+  "assets": {
+    "categories": {
+      "path": "icons/categories/",
+      "files": [
+        {
+          "name": "food.svg",
+          "category": "Food & Dining",
+          "color": "#FF5722",
+          "accessible_color": "#D84315",
+          "size": "32x32",
+          "usage": "Restaurant meals, groceries, dining expenses"
+        },
+        {
+          "name": "transport.svg",
+          "category": "Transportation",
+          "color": "#3F51B5",
+          "accessible_color": "#3F51B5",
+          "size": "32x32",
+          "usage": "Fuel, public transport, taxi, car maintenance"
+        },
+        {
+          "name": "entertainment.svg",
+          "category": "Entertainment",
+          "color": "#9C27B0",
+          "accessible_color": "#9C27B0",
+          "size": "32x32",
+          "usage": "Movies, games, subscriptions, hobbies"
+        },
+        {
+          "name": "shopping.svg",
+          "category": "Shopping",
+          "color": "#E91E63",
+          "accessible_color": "#C2185B",
+          "size": "32x32",
+          "usage": "Retail purchases, online shopping, general merchandise"
+        },
+        {
+          "name": "bills.svg",
+          "category": "Bills & Utilities",
+          "color": "#607D8B",
+          "accessible_color": "#455A64",
+          "size": "32x32",
+          "usage": "Electricity, water, internet, phone bills"
+        },
+        {
+          "name": "healthcare.svg",
+          "category": "Healthcare",
+          "color": "#00BCD4",
+          "accessible_color": "#0097A7",
+          "size": "32x32",
+          "usage": "Doctor visits, medications, health insurance"
+        },
+        {
+          "name": "education.svg",
+          "category": "Education",
+          "color": "#795548",
+          "accessible_color": "#5D4037",
+          "size": "32x32",
+          "usage": "School fees, books, courses, training"
+        },
+        {
+          "name": "travel.svg",
+          "category": "Travel",
+          "color": "#FF9800",
+          "accessible_color": "#F57C00",
+          "size": "32x32",
+          "usage": "Flights, hotels, vacation expenses"
+        }
+      ]
+    },
+    "branding": {
+      "path": "branding/",
+      "files": [
+        {
+          "name": "logo-main.svg",
+          "description": "Main application logo",
+          "size": "64x64",
+          "usage": "App headers, about pages, marketing materials"
+        },
+        {
+          "name": "favicon-16x16.svg",
+          "description": "Browser tab icon",
+          "size": "16x16",
+          "usage": "Browser favicons"
+        },
+        {
+          "name": "favicon-32x32.svg",
+          "description": "Bookmark icon",
+          "size": "32x32",
+          "usage": "Browser bookmarks, desktop shortcuts"
+        }
+      ]
+    },
+    "pwa": {
+      "path": "pwa/",
+      "files": [
+        {
+          "name": "icon-192x192.svg",
+          "description": "PWA home screen icon",
+          "size": "192x192",
+          "usage": "Mobile home screen, app launcher"
+        },
+        {
+          "name": "icon-512x512.svg",
+          "description": "PWA store listing icon",
+          "size": "512x512",
+          "usage": "App store listings, large displays"
+        }
+      ]
+    },
+    "splash_screens": {
+      "path": "splash-screens/",
+      "files": [
+        {
+          "name": "splash-640x1136.svg",
+          "description": "iPhone 5/SE splash screen",
+          "size": "640x1136",
+          "usage": "iOS PWA launch screen"
+        },
+        {
+          "name": "splash-750x1334.svg",
+          "description": "iPhone 6/7/8 splash screen",
+          "size": "750x1334",
+          "usage": "iOS PWA launch screen"
+        },
+        {
+          "name": "splash-1242x2208.svg",
+          "description": "iPhone Plus splash screen",
+          "size": "1242x2208",
+          "usage": "iOS PWA launch screen"
+        }
+      ]
+    },
+    "ui_icons": {
+      "path": "icons/ui/",
+      "files": [
+        {
+          "name": "add.svg",
+          "description": "Add new item",
+          "size": "24x24",
+          "usage": "FAB, create buttons"
+        },
+        {
+          "name": "edit.svg",
+          "description": "Edit existing item",
+          "size": "24x24",
+          "usage": "Edit buttons, modification actions"
+        },
+        {
+          "name": "delete.svg",
+          "description": "Delete item",
+          "size": "24x24",
+          "usage": "Delete buttons, removal actions"
+        },
+        {
+          "name": "search.svg",
+          "description": "Search functionality",
+          "size": "24x24",
+          "usage": "Search inputs, find actions"
+        },
+        {
+          "name": "filter.svg",
+          "description": "Filter options",
+          "size": "24x24",
+          "usage": "Filter controls, sorting"
+        },
+        {
+          "name": "close.svg",
+          "description": "Close dialog",
+          "size": "24x24",
+          "usage": "Modal close, dismiss actions"
+        }
+      ]
+    },
+    "navigation_icons": {
+      "path": "icons/navigation/",
+      "files": [
+        {
+          "name": "home.svg",
+          "description": "Home dashboard",
+          "size": "24x24",
+          "usage": "Bottom navigation, main dashboard"
+        },
+        {
+          "name": "transactions.svg",
+          "description": "Transaction history",
+          "size": "24x24",
+          "usage": "Bottom navigation, transaction list"
+        },
+        {
+          "name": "stats.svg",
+          "description": "Statistics and analytics",
+          "size": "24x24",
+          "usage": "Bottom navigation, reports page"
+        },
+        {
+          "name": "settings.svg",
+          "description": "Application settings",
+          "size": "24x24",
+          "usage": "Bottom navigation, settings page"
+        }
+      ]
+    },
+    "loading": {
+      "path": "loading/",
+      "files": [
+        {
+          "name": "spinner.svg",
+          "description": "Circular loading spinner",
+          "size": "40x40",
+          "usage": "General loading states, form submissions",
+          "animated": true
+        },
+        {
+          "name": "pulse-dots.svg",
+          "description": "Pulsing dots loader",
+          "size": "60x20",
+          "usage": "Content loading, processing states",
+          "animated": true
+        }
+      ]
+    },
+    "animations": {
+      "path": "animations/",
+      "files": [
+        {
+          "name": "checkmark.svg",
+          "description": "Success checkmark animation",
+          "size": "24x24",
+          "usage": "Success confirmations, completed actions",
+          "animated": true
+        },
+        {
+          "name": "progress-ring.svg",
+          "description": "Circular progress indicator",
+          "size": "120x120",
+          "usage": "Balance displays, goal tracking",
+          "animated": true
+        }
+      ]
+    }
+  },
+  "implementation": {
+    "formats": ["SVG"],
+    "color_format": "currentColor",
+    "accessibility": "WCAG 2.1 AA compliant",
+    "browser_support": ["Chrome 60+", "Firefox 55+", "Safari 12+", "Edge 79+"],
+    "optimization": {
+      "svgo": true,
+      "gzip": true,
+      "cache_strategy": "long-term"
+    }
+  },
+  "usage_guidelines": {
+    "primary_colors": {
+      "brand_green": "#4CAF50",
+      "accent_orange": "#FF9800",
+      "text_primary": "#212121",
+      "text_secondary": "#757575"
+    },
+    "sizing": {
+      "icon_xs": "16px",
+      "icon_sm": "20px", 
+      "icon_md": "24px",
+      "icon_lg": "32px",
+      "icon_xl": "48px"
+    },
+    "implementation_methods": [
+      "SVG sprites",
+      "Inline SVG",
+      "CSS background images",
+      "Icon fonts (optional)"
+    ]
+  },
+  "documentation": {
+    "style_guide": "VISUAL_ASSETS_STYLE_GUIDE.md",
+    "optimization_guide": "ASSET_OPTIMIZATION_GUIDE.md",
+    "accessibility_guide": "ACCESSIBILITY_COLOR_GUIDE.md"
+  }
+}

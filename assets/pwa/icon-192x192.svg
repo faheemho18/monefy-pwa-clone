@@ -1,0 +1,23 @@
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main background circle -->
+  <circle cx="96" cy="96" r="96" fill="url(#gradient)"/>
+  
+  <!-- Inner circle for contrast -->
+  <circle cx="96" cy="96" r="80" fill="#4CAF50"/>
+  
+  <!-- Dollar sign -->
+  <path d="M88 32V48H72V64H88V128H72V144H88V160H104V144H120V128H104V64H120V48H104V32H88ZM88 64V128H104V64H88Z" fill="white"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="144" cy="48" r="8" fill="#FF9800" fill-opacity="0.8"/>
+  <circle cx="48" cy="144" r="6" fill="#FF9800" fill-opacity="0.6"/>
+  <circle cx="156" cy="156" r="4" fill="#FFFFFF" fill-opacity="0.3"/>
+  <circle cx="36" cy="36" r="4" fill="#FFFFFF" fill-opacity="0.3"/>
+  
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#388E3C;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
