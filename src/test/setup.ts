@@ -1,8 +1,9 @@
 import '@testing-library/jest-dom'
+import { vi } from 'vitest'
 
 // Mock Firebase
-global.console.warn = jest.fn()
-global.console.error = jest.fn()
+global.console.warn = vi.fn()
+global.console.error = vi.fn()
 
 // Mock environment variables
 Object.defineProperty(import.meta, 'env', {
@@ -17,9 +18,14 @@ Object.defineProperty(import.meta, 'env', {
 })
 
 // Mock IntersectionObserver
-global.IntersectionObserver = class IntersectionObserver {
-  constructor() {}
-  disconnect() {}
-  observe() {}
-  unobserve() {}
-}
+const mockIntersectionObserver = vi.fn(() => ({
+  disconnect: vi.fn(),
+  observe: vi.fn(),
+  unobserve: vi.fn(),
+  root: null,
+  rootMargin: '',
+  thresholds: [],
+  takeRecords: vi.fn(() => []),
+}))
+
+global.IntersectionObserver = mockIntersectionObserver as any

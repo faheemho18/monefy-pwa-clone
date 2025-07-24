@@ -1,4 +1,4 @@
-import React from 'react'
+// No need to import React in modern React with JSX transform
 
 function App() {
   return (

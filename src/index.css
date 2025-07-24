@@ -2,40 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  /* Custom base styles */
-  body {
-    font-family: 'Inter', system-ui, sans-serif;
-  }
-}
-
-@layer components {
-  /* Custom component styles */
-  .btn-primary {
-    @apply bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
-  }
-  
-  .btn-secondary {
-    @apply bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
-  }
-  
-  .card {
-    @apply bg-white rounded-xl shadow-card p-4;
-  }
-  
-  .expense-amount {
-    @apply text-expense-500 font-semibold;
-  }
-  
-  .income-amount {
-    @apply text-income-500 font-semibold;
-  }
-}
-
-@layer utilities {
-  /* Custom utility classes */
-  .safe-area-inset {
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
-  }
+/* Basic styling for now - will expand with custom design system later */
+body {
+  font-family: 'Inter', system-ui, sans-serif;
 }
