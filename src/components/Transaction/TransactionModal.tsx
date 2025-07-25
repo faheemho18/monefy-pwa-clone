@@ -8,6 +8,8 @@ import { validateTransaction, validateAmountInput } from '@/utils/validation'
 import { ErrorSummary } from '@/components/UI/ErrorDisplay'
 import { ValidatedTextArea } from '@/components/UI/ValidatedInput'
 import { hapticFeedback } from '@/utils/haptics'
+import LoadingSpinner from '@/components/UI/LoadingSpinner'
+import SuccessCheckmark from '@/components/UI/SuccessCheckmark'
 
 interface TransactionModalProps {
   isOpen: boolean
@@ -32,6 +34,7 @@ export default function TransactionModal({
   const [validationErrors, setValidationErrors] = useState<Record<string, string[]>>({})
   const [amountError, setAmountError] = useState<string[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
 
   // Create mock categories with IDs for this demo
   const mockCategories: Category[] = [
@@ -194,16 +197,24 @@ export default function TransactionModal({
       }
       
       hapticFeedback.addTransaction()
-      onSubmit?.(finalTransaction)
-      onClose()
       
-      // Reset form state
-      setAmount('')
-      setDisplayAmount('0')
-      setSelectedCategory(null)
-      setDescription('')
-      setValidationErrors({})
-      setAmountError([])
+      // Show success animation before closing
+      setShowSuccess(true)
+      
+      // Wait for success animation, then close
+      setTimeout(() => {
+        onSubmit?.(finalTransaction)
+        onClose()
+        
+        // Reset form state
+        setAmount('')
+        setDisplayAmount('0')
+        setSelectedCategory(null)
+        setDescription('')
+        setValidationErrors({})
+        setAmountError([])
+        setShowSuccess(false)
+      }, 1000)
       
     } catch (error) {
       console.error('Error submitting transaction:', error)
@@ -220,8 +231,15 @@ export default function TransactionModal({
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black bg-opacity-50">
-      <div className="w-full max-w-md bg-white rounded-t-2xl p-6 max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-end justify-center">
+      {/* Backdrop with fade-in animation */}
+      <div 
+        className="absolute inset-0 bg-black bg-opacity-50 animate-in fade-in duration-300"
+        onClick={onClose}
+      />
+      
+      {/* Modal with slide-up animation */}
+      <div className="relative w-full max-w-md bg-white rounded-t-2xl p-6 max-h-[90vh] overflow-y-auto animate-in slide-in-from-bottom duration-300 ease-out shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-semibold text-gray-900">
@@ -243,10 +261,12 @@ export default function TransactionModal({
           </div>
         )}
 
-        {/* Amount Display */}
+        {/* Amount Display with smooth transitions */}
         <div className="text-center mb-6">
-          <div className={`text-3xl font-bold mb-2 ${
-            amountError.length > 0 ? 'text-red-600' : 'text-gray-900'
+          <div className={`text-3xl font-bold mb-2 transition-all duration-200 ease-out ${
+            amountError.length > 0 
+              ? 'text-red-600 animate-pulse' 
+              : 'text-gray-900 transform hover:scale-105'
           }`}>
             ${displayAmount}
           </div>
@@ -259,10 +279,10 @@ export default function TransactionModal({
             <button
               onClick={() => setType('expense')}
               disabled={isSubmitting}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors disabled:opacity-50 ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ease-out disabled:opacity-50 transform hover:scale-105 focus:scale-105 focus:ring-2 focus:ring-offset-2 ${
                 type === 'expense'
-                  ? 'bg-red-500 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-red-500 text-white shadow-lg shadow-red-500/30 focus:ring-red-500'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 focus:ring-gray-300'
               }`}
             >
               Expense
@@ -270,10 +290,10 @@ export default function TransactionModal({
             <button
               onClick={() => setType('income')}
               disabled={isSubmitting}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors disabled:opacity-50 ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ease-out disabled:opacity-50 transform hover:scale-105 focus:scale-105 focus:ring-2 focus:ring-offset-2 ${
                 type === 'income'
-                  ? 'bg-green-500 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-green-500 text-white shadow-lg shadow-green-500/30 focus:ring-green-500'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 focus:ring-gray-300'
               }`}
             >
               Income
@@ -316,13 +336,14 @@ export default function TransactionModal({
         </div>
 
         {/* Keypad */}
+        {/* Numeric Keypad with enhanced animations */}
         <div className="grid grid-cols-3 gap-3 mb-6">
           {['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '⌫'].map((key) => (
             <button
               key={key}
               onClick={() => key === '⌫' ? handleBackspace() : handleNumberClick(key)}
               disabled={isSubmitting}
-              className="h-14 min-w-[56px] bg-gray-100 hover:bg-gray-200 active:bg-gray-300 rounded-lg font-medium text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="h-14 min-w-[56px] bg-gray-100 hover:bg-gray-200 active:bg-gray-300 rounded-lg font-medium text-lg transition-all duration-150 ease-out disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform hover:scale-105 active:scale-95 hover:shadow-md"
               aria-label={key === '⌫' ? 'Delete' : `Enter ${key}`}
             >
               {key}
@@ -330,22 +351,27 @@ export default function TransactionModal({
           ))}
         </div>
 
-        {/* Submit Button */}
+        {/* Submit Button with enhanced animations */}
         <button
           onClick={handleSubmit}
           disabled={!canSubmit}
-          className={`w-full py-3 rounded-lg font-medium transition-colors flex items-center justify-center ${
+          className={`w-full py-3 rounded-lg font-medium transition-all duration-300 ease-out flex items-center justify-center transform hover:scale-105 focus:scale-105 focus:ring-2 focus:ring-offset-2 ${
             canSubmit
               ? type === 'expense'
-                ? 'bg-red-500 hover:bg-red-600 text-white'
-                : 'bg-green-500 hover:bg-green-600 text-white'
+                ? 'bg-red-500 hover:bg-red-600 text-white shadow-lg shadow-red-500/30 focus:ring-red-500'
+                : 'bg-green-500 hover:bg-green-600 text-white shadow-lg shadow-green-500/30 focus:ring-green-500'
               : 'bg-gray-300 text-gray-500 cursor-not-allowed'
           }`}
         >
-          {isSubmitting ? (
+          {showSuccess ? (
             <>
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-              Processing...
+              <SuccessCheckmark size="sm" className="mr-2" />
+              <span className="animate-pulse">Success!</span>
+            </>
+          ) : isSubmitting ? (
+            <>
+              <LoadingSpinner size="sm" className="mr-2" />
+              <span className="animate-pulse">Processing...</span>
             </>
           ) : (
             <>
